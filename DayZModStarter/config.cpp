@@ -30,6 +30,18 @@ class CfgMods
 
     class defs
     {
+      class gameScriptModule
+      {
+        value = "";
+        files[] = {"DayZModStarter/3_Game"};
+      };
+
+      class worldScriptModule
+      {
+        value = "";
+        files[] = {"DayZModStarter/4_World"};
+      };
+
       class missionScriptModule
       {
         value = "";
