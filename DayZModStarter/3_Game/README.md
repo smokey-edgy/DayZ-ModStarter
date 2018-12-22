@@ -1,2 +1,2 @@
-# DayZ-ModStarter
-A starter project for building DayZ mods
+# 3_Game
+All game related files go here
