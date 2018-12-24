@@ -35,12 +35,18 @@ REM Run the BI Addon build tool, AddonBuilder.exe
 "%toolsPath%\Bin\AddonBuilder\AddonBuilder.exe" %sourceDirectory% %destinationDirectory% -pboversion=%version% -toolsDirectory="%toolsPath%" -clear -prefix=%modName% -include=include.txt %optionalPrivateKeyFileArg%
 
 REM Unfortunately, AddonBuilder always returns an exit code of 0 even on error
-
 exit /B 0
 
 goto :eof
 :usage
 @echo Usage: build.bat ^<mod name^> ^<version^> ^<DayZ Tools path^> [private key file path]
+@echo.
+@echo A command line tool that wraps around the Bohemia Interactive DayZ Tools AddOnBuilder
+@echo.
+@echo - Generates a server ready @modName directory that can be copied over to your DayZ server root folder
+@echo - Generates the .pbo file via AddOnBuilder
+@echo - The generated assets above are written to the 'artifacts' directory in the root level of this project
+
 exit /B 1
 
 @echo on
