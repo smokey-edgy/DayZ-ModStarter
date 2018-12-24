@@ -12,7 +12,8 @@ SET toolsPath=%~3
 SET optionalPrivateKeyFile=%4
 SET optionalPrivateKeyFileArg=
 SET sourceDirectory="%~dp0%modName%"
-SET destinationDirectory="%~dp0artifacts"
+SET modDirectory="%~dp0build\@%modName%"
+SET destinationDirectory=%modDirectory%\Addons
 
 @echo.
 @echo ===================================================================
@@ -31,10 +32,15 @@ if NOT [%optionalPrivateKeyFile%]==[] (
 @echo ===================================================================
 @echo.
 
+if EXIST build rd /S /Q build
+
 REM Run the BI Addon build tool, AddonBuilder.exe
 "%toolsPath%\Bin\AddonBuilder\AddonBuilder.exe" %sourceDirectory% %destinationDirectory% -pboversion=%version% -toolsDirectory="%toolsPath%" -clear -prefix=%modName% -include=include.txt %optionalPrivateKeyFileArg%
 
 REM Unfortunately, AddonBuilder always returns an exit code of 0 even on error
+
+md %modDirectory%\Keys
+
 exit /B 0
 
 goto :eof
@@ -43,9 +49,9 @@ goto :eof
 @echo.
 @echo A command line tool that wraps around the Bohemia Interactive DayZ Tools AddOnBuilder
 @echo.
-@echo - Generates a server ready @modName directory that can be copied over to your DayZ server root folder
+@echo - Generates a client/server ready @modName directory
 @echo - Generates the .pbo file via AddOnBuilder
-@echo - The generated assets above are written to the 'artifacts' directory in the root level of this project
+@echo - The generated assets above are written to the 'build' directory in the root level of this project
 
 exit /B 1
 
