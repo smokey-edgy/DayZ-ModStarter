@@ -15,14 +15,12 @@ SET dayZServerRootDirectory=%4
 SET optionalPrivateKeyFile=%5
 SET optionalPublicKeyFile=%6
 
-@ECHO ON
 CALL stopServer.bat
 CALL stopClient.bat
-@ECHO ON
 CALL build.bat %modName% %version% %toolsPath% %optionalPrivateKeyFile% %optionalPublicKeyFile%
 CALL deploy.bat %dayZServerRootDirectory%
 CALL startServer.bat %dayZServerRootDirectory%
-@ECHO OFF
+
 echo Press any key to rebuild and cold deploy your mod...
 PAUSE >nul
 GOTO rebuildAndColdDeploy
