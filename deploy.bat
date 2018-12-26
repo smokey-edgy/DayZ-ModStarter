@@ -1,17 +1,19 @@
 @ECHO OFF
 
+REM Check the provided arguments are what we expect:
+REM dayZServerRootDirectory
 IF [%1]==[] GOTO usage
 
-SET dayZRootDirectory=%1
-SET dayZServerKeysDirectory=%dayZRootDirectory%\keys
+SET dayZServerRootDirectory=%1
+SET dayZServerKeysDirectory=%dayZServerRootDirectory%\keys
 
 
 @ECHO.
 @ECHO ===================================================================
-@ECHO Deploying everything that is under build to %dayZRootDirectory%
+@ECHO Deploying everything that is under build to %dayZServerRootDirectory%
 @ECHO ===================================================================
 @ECHO.
-XCOPY build\* %dayZRootDirectory% /S /E /Y
+XCOPY build\* %dayZServerRootDirectory% /S /E /Y
 
 @ECHO ===================================================================
 @ECHO Copying all .bikey files found under build to %dayZServerKeysDirectory%
