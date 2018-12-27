@@ -1,5 +1,22 @@
 @ECHO OFF
 
+SETLOCAL
+
+IF NOT EXIST vars.bat GOTO :args
+
+CALL vars.bat
+
+REM Check if the approriate vars have been set; they're either all set or
+REM you must use the command line args
+IF ["%modName%"]==[] GOTO :args
+IF ["%version%"]==[] GOTO :args
+IF ["%dayZToolsPath%"]==[] GOTO :args
+
+SET optionalPrivateKeyFile="%optionalPrivateKeyFile%"
+SET optionalPublicKeyFile="%optionalPublicKeyFile%"
+GOTO :build
+
+:args
 REM Check the provided arguments are what we expect:
 REM modName, version and toolsPath are required
 IF [%1]==[] GOTO usage
@@ -8,10 +25,12 @@ IF [%3]==[] GOTO usage
 
 SET modName=%~1
 SET version=%~2
-SET toolsPath=%~3
+SET dayZToolsPath=%~3
 SET optionalPrivateKeyFile=%4
 SET optionalPrivateKeyFileArg=
 SET optionalPublicKeyFile=%5
+
+:build
 SET sourceDirectory="%~dp0%modName%"
 SET modDirectory="%~dp0build\@%modName%"
 SET destinationDirectory=%modDirectory%\Addons
@@ -20,7 +39,7 @@ SET destinationDirectory=%modDirectory%\Addons
 @ECHO ===================================================================
 @ECHO Building %modName% mod version %version%
 @ECHO From source directory %sourceDirectory%
-@ECHO Using DayZ Tools located at %toolsPath%
+@ECHO Using DayZ Tools located at %dayZToolsPath%
 
 REM We will append the -sign argument to AddOnBuilder only if a private key file was provided
 IF NOT [%optionalPrivateKeyFile%]==[] (
@@ -36,7 +55,7 @@ IF NOT [%optionalPrivateKeyFile%]==[] (
 IF EXIST build RD /S /Q build
 
 REM Run the BI Addon build tool, AddonBuilder.exe
-"%toolsPath%\Bin\AddonBuilder\AddonBuilder.exe" %sourceDirectory% %destinationDirectory% -pboversion=%version% -toolsDirectory="%toolsPath%" -clear -prefix=%modName% -include=include.txt %optionalPrivateKeyFileArg%
+"%dayZToolsPath%\Bin\AddonBuilder\AddonBuilder.exe" %sourceDirectory% %destinationDirectory% -pboversion=%version% -toolsDirectory="%dayZToolsPath%" -clear -prefix=%modName% -include=include.txt %optionalPrivateKeyFileArg%
 
 REM Unfortunately, AddonBuilder always returns an exit code of 0 even on error
 

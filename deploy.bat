@@ -1,12 +1,27 @@
 @ECHO OFF
 
+SETLOCAL
+
+IF NOT EXIST vars.bat GOTO :args
+
+CALL vars.bat
+
+REM Check if the approriate vars have been set; they're either all set or
+REM you must use the command line args
+IF ["%dayZServerRootDirectory%"]==[] GOTO :args
+SET dayZServerRootDirectory="%dayZServerRootDirectory%"
+
+GOTO :build
+
 REM Check the provided arguments are what we expect:
 REM dayZServerRootDirectory
+:args
 IF [%1]==[] GOTO usage
 
 SET dayZServerRootDirectory=%1
-SET dayZServerKeysDirectory=%dayZServerRootDirectory%\keys
 
+:build
+SET dayZServerKeysDirectory=%dayZServerRootDirectory%\keys
 
 @ECHO.
 @ECHO ===================================================================
