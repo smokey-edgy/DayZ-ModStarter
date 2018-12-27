@@ -17,6 +17,11 @@ SET optionalPublicKeyFile=%6
 
 CALL stopServer.bat
 CALL stopClient.bat
+
+@ECHO.
+@ECHO Give the server and client some time to terminate...
+TIMEOUT /T 5 /NOBREAK
+
 CALL build.bat %modName% %version% %toolsPath% %optionalPrivateKeyFile% %optionalPublicKeyFile%
 CALL deploy.bat %dayZServerRootDirectory%
 CALL startServer.bat %dayZServerRootDirectory%
