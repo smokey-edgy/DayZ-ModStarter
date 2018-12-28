@@ -10,10 +10,9 @@ REM Check if the approriate vars have been set; they're either all set or
 REM you must use the command line args
 IF ["%modName%"]==[] GOTO :args
 IF ["%version%"]==[] GOTO :args
-IF ["%dayZToolsPath%"]==[] GOTO :args
+IF ["%optionalPrivateKeyFile%"]==[] SET optionalPrivateKeyFile=
+IF ["%optionalPublicKeyFile%"]==[] SET optionalPublicKeyFile=
 
-SET optionalPrivateKeyFile="%optionalPrivateKeyFile%"
-SET optionalPublicKeyFile="%optionalPublicKeyFile%"
 GOTO :build
 
 :args
