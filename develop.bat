@@ -28,11 +28,6 @@ IF [%5]==[] GOTO usage
 :rebuildAndColdDeploy
 IF EXIST vars.bat (
   CALL vars.bat
-  SET modName="%modName%"
-  SET version="%version%"
-  SET dayZToolsPath="%dayZToolsPath%"
-  SET dayZServerRootDirectory="%dayZServerRootDirectory%"
-  SET dayZGamePath="%dayZGamePath%"
   IF NOT [%optionalPrivateKeyFile%]==[] SET optionalPrivateKeyFile="%optionalPrivateKeyFile%"
   IF NOT [%optionalPublicKeyFile%]==[] SET optionalPublicKeyFile="%optionalPublicKeyFile%"
 ) ELSE (
@@ -59,7 +54,7 @@ CALL startClient.bat %dayZGamePath% %dayZServerRootDirectory%
 
 echo Press any key to rebuild and cold deploy your mod...
 PAUSE >nul
-GOTO rebuildAndColdDeploy
+GOTO :rebuildAndColdDeploy
 
 EXIT /B 0
 

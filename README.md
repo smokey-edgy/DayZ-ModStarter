@@ -18,7 +18,7 @@ This includes:
 4. If all goes well, you should see the DayZ server startup along with the client (game) automatically connecting to the server. Sometimes a weird bug occurs where your mouse gets locked in a small area at the top of the screen after launching the server. Simply, Alt+Tab out and the normal behaviour will be restored.
 5. To verify the mod was loaded on the server, open or tail `script.log` in serverProfile under the project directory and you should see a message that says __DayZModStarter loaded!__.  This validates the mod was loaded successfully on the server.
 6. To verify the mod was loaded on the client, open up the game options and ensure Game, Admin and Player messages are enabled. Once you hit apply, you should see (GAME): Tick appear on the bottom left part of your screen. This validates the mod was loaded successfully on the client.
-7. At this point, you are ready to code your mod. Once you've made changes you'd like pushed to the client and server, simply go back to the Command Prompt window and press any key. The build/deploy cycle will repeat and your client and server will be restarted to reflect the changes.
+7. At this point, you are ready to code your mod. Once you've made changes you'd like pushed to the client and server, simply go back to the Command Prompt window and press any key. The build/deploy cycle will repeat and your client and server will be restarted to reflect the changes. If you get a 'DayZ has stopped working' dialog, simply Close the Program.
 
 ## Logs
 All server logs go under the serverProfile directory at the root of the project. The server start is configured to use this directory.
