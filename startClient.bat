@@ -30,7 +30,7 @@ PUSHD %dayZServerRootDirectory%
 FOR /D /r %%i in (@*.*) do call SET "mods=!mods!%%~i;"
 POPD
 @ECHO Launching DayZ client automatically connecting to localhost:2302 with mods %mods%...
-CALL START "" %dayZGamePath%\DayZ_BE.exe 0 1 1 -exe DayZ_x64.exe "-mod=%mods%" -connect=localhost -port=2302
+CALL START "" %dayZGamePath%\DayZ_BE.exe 0 1 1 -exe DayZ_x64.exe "-mod=%mods%" -connect=localhost -port=2302 -window
 
 EXIT /B 0
 
