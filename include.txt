@@ -1,1 +1,1 @@
-*.emat;*.edds;*.ptc;*.c;*.imageset;*.layout;*.ogg
+*.emat;*.edds;*.ptc;*.c;*.h;*.imageset;*.layout;*.ogg
